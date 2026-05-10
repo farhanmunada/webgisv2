@@ -1,51 +1,17 @@
 <x-umkm-layout>
     <x-slot name="header">
-        Dashboard UMKM
+        Kelola Produk
     </x-slot>
 
-    <!-- Compact Stats Row -->
-    <div class="flex flex-wrap gap-4 mb-8">
-        <div class="flex-1 min-w-[150px] bg-white px-6 py-4 rounded-2xl border border-slate-100 shadow-sm flex items-center gap-4">
-            <div class="w-10 h-10 bg-amber-50 rounded-xl flex items-center justify-center text-[#8B4513] shrink-0">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path></svg>
-            </div>
-            <div>
-                <span class="block text-[10px] font-black text-slate-400 uppercase tracking-widest">Produk</span>
-                <span class="text-lg font-black text-slate-900">{{ $stats['total_products'] }}</span>
-            </div>
-        </div>
-        
-        <div class="flex-1 min-w-[150px] bg-white px-6 py-4 rounded-2xl border border-slate-100 shadow-sm flex items-center gap-4">
-            <div class="w-10 h-10 bg-blue-50 rounded-xl flex items-center justify-center text-blue-600 shrink-0">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>
-            </div>
-            <div>
-                <span class="block text-[10px] font-black text-slate-400 uppercase tracking-widest">Kategori</span>
-                <span class="text-sm font-black text-slate-900 truncate max-w-[100px]">{{ $umkm->category->nama_kategori ?? '-' }}</span>
-            </div>
-        </div>
-
-        <div class="flex-1 min-w-[150px] bg-white px-6 py-4 rounded-2xl border border-slate-100 shadow-sm flex items-center gap-4">
-            <div class="w-10 h-10 bg-emerald-50 rounded-xl flex items-center justify-center text-emerald-600 shrink-0">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-            </div>
-            <div>
-                <span class="block text-[10px] font-black text-slate-400 uppercase tracking-widest">Status</span>
-                <span class="text-sm font-black text-emerald-600 uppercase">Aktif</span>
-            </div>
-        </div>
-    </div>
-
-    <!-- Product List -->
     <div class="bg-white rounded-[2.5rem] border border-slate-100 shadow-sm overflow-hidden mb-8">
         <div class="p-8 border-b border-slate-50 flex flex-col md:flex-row md:items-center justify-between gap-4">
             <div>
-                <h3 class="text-xl font-black text-slate-900">Katalog Produk</h3>
-                <p class="text-slate-500 text-xs mt-1">Kelola produk kopi yang Anda tampilkan di WebGIS.</p>
+                <h3 class="text-xl font-black text-slate-900">Daftar Produk Anda</h3>
+                <p class="text-slate-500 text-xs mt-1">Kelola semua katalog produk kopi yang Anda tampilkan.</p>
             </div>
             <a href="{{ route('umkm.products.create') }}" class="inline-flex items-center gap-2 px-6 py-3 bg-[#8B4513] text-white rounded-2xl text-xs font-black shadow-lg shadow-amber-900/20 hover:bg-[#703610] transition-all transform active:scale-95 uppercase tracking-widest">
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M12 4v16m8-8H4"></path></svg>
-                Tambah Produk
+                Tambah Produk Baru
             </a>
         </div>
 
@@ -118,23 +84,5 @@
             {{ $products->links('vendor.pagination.premium') }}
         </div>
         @endif
-    </div>
-
-    <!-- Info Section -->
-    <div class="bg-white rounded-[2.5rem] border border-slate-100 shadow-sm p-12 text-center">
-        <div class="w-24 h-24 bg-amber-50 rounded-[2rem] flex items-center justify-center text-[#8B4513] mx-auto mb-6">
-            <svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-        </div>
-        <h3 class="text-2xl font-black text-slate-900 mb-4">Profil UMKM Anda Aktif</h3>
-        <p class="text-slate-500 max-w-lg mx-auto leading-relaxed">Selamat! Unit usaha Anda sudah terdaftar dan terlihat di peta publik WebGIS Kopi Temanggung. Anda dapat memperbarui informasi profil dan lokasi melalui menu Edit Profil.</p>
-        
-        <div class="mt-10 flex justify-center gap-4">
-            <a href="{{ route('umkm.profile.edit') }}" class="px-8 py-4 bg-[#8B4513] text-white rounded-2xl font-black text-sm shadow-xl shadow-amber-900/20 hover:bg-[#703610] transition-all transform active:scale-95 uppercase tracking-widest">
-                Edit Profil UMKM
-            </a>
-            <a href="/" class="px-8 py-4 bg-white text-slate-600 border border-slate-200 rounded-2xl font-black text-sm hover:bg-slate-50 transition-all uppercase tracking-widest">
-                Lihat di Peta
-            </a>
-        </div>
     </div>
 </x-umkm-layout>

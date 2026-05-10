@@ -30,10 +30,13 @@ class UmkmDashboardController extends Controller
         }
 
         $stats = [
+            'total_products' => Product::where('umkm_id', $umkm->id)->count(),
             'total_views' => 0, // Placeholder
         ];
 
-        return view('user.dashboard', compact('umkm', 'stats'));
+        $products = Product::where('umkm_id', $umkm->id)->latest()->paginate(10);
+
+        return view('user.dashboard', compact('umkm', 'stats', 'products'));
     }
 
     public function editProfile()

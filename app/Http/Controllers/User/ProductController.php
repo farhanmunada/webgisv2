@@ -11,6 +11,13 @@ use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
+    public function index()
+    {
+        $umkm = $this->getUmkm();
+        $products = Product::where('umkm_id', $umkm->id)->latest()->paginate(10);
+        return view('user.products.index', compact('products'));
+    }
+
     private function getUmkm()
     {
         return Umkm::where('user_id', Auth::id())->firstOrFail();

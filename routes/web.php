@@ -24,6 +24,16 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::middleware(['umkm'])->group(function() {
         Route::get('/umkm/profile', [\App\Http\Controllers\User\UmkmDashboardController::class, 'editProfile'])->name('umkm.profile.edit');
         Route::patch('/umkm/profile', [\App\Http\Controllers\User\UmkmDashboardController::class, 'updateProfile'])->name('umkm.profile.update');
+        
+        // UMKM Product Management
+        Route::resource('umkm-products', \App\Http\Controllers\User\ProductController::class)->names([
+            'index' => 'umkm.products.index',
+            'create' => 'umkm.products.create',
+            'store' => 'umkm.products.store',
+            'edit' => 'umkm.products.edit',
+            'update' => 'umkm.products.update',
+            'destroy' => 'umkm.products.destroy',
+        ]);
     });
 });
 

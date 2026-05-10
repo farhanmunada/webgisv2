@@ -4,7 +4,7 @@ export const HeatmapManager = {
     init(google) {
         State.heatmapLayer = new google.maps.visualization.HeatmapLayer({
             data: State.heatmapData,
-            radius: 35,
+            radius: 52,
             opacity: 0.8,
             gradient: [
                 'rgba(234, 88, 12, 0)', 'rgba(234, 88, 12, 0.2)', 'rgba(234, 88, 12, 0.4)',

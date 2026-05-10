@@ -39,6 +39,10 @@
                         <svg class="w-4 h-4 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
                         Edit Profil UMKM
                     </a>
+                    <a href="{{ route('umkm.products.index') }}" class="flex items-center px-4 py-3 text-sm font-bold {{ request()->routeIs('umkm.products.*') ? 'bg-amber-50 text-[#8B4513] rounded-2xl' : 'text-slate-500 hover:bg-slate-50 rounded-2xl' }}">
+                        <svg class="w-4 h-4 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path></svg>
+                        Kelola Produk
+                    </a>
                     
                     <div class="pt-10">
                         <form method="POST" action="{{ route('logout') }}">
@@ -71,6 +75,7 @@
                 <nav class="p-6 space-y-2">
                     <a href="{{ route('dashboard') }}" class="block px-4 py-3 text-sm font-bold {{ request()->routeIs('dashboard') ? 'text-[#8B4513] bg-amber-50 rounded-2xl' : 'text-slate-500' }}">Dashboard</a>
                     <a href="{{ route('umkm.profile.edit') }}" class="block px-4 py-3 text-sm font-bold {{ request()->routeIs('umkm.profile.*') ? 'text-[#8B4513] bg-amber-50 rounded-2xl' : 'text-slate-500' }}">Edit Profil UMKM</a>
+                    <a href="{{ route('umkm.products.index') }}" class="block px-4 py-3 text-sm font-bold {{ request()->routeIs('umkm.products.*') ? 'text-[#8B4513] bg-amber-50 rounded-2xl' : 'text-slate-500' }}">Kelola Produk</a>
                     <form method="POST" action="{{ route('logout') }}" class="pt-4">
                         @csrf
                         <button type="submit" class="w-full text-left px-4 py-3 text-sm font-bold text-rose-600">Logout</button>
