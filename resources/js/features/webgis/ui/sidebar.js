@@ -1,10 +1,15 @@
 export const Sidebar = {
-    overlay: document.getElementById('sidebar-overlay'),
-    drawer: document.getElementById('sidebar-drawer'),
-    btnOpen: document.getElementById('menu-btn'),
-    btnClose: document.getElementById('close-sidebar'),
+    overlay: null,
+    drawer: null,
+    btnOpen: null,
+    btnClose: null,
 
     init() {
+        this.overlay = document.getElementById('sidebar-overlay');
+        this.drawer = document.getElementById('sidebar-drawer');
+        this.btnOpen = document.getElementById('menu-btn');
+        this.btnClose = document.getElementById('close-sidebar');
+
         if (!this.overlay || !this.drawer) return;
 
         this.btnOpen?.addEventListener('click', () => this.open());

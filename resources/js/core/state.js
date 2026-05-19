@@ -10,6 +10,9 @@ export const State = {
     currentUmkmPos: null,
     currentUmkmId: null,
     isHeatmapActive: false,
+    isMarkersVisible: true,
+    heatmapRadius: 50,
+    heatmapOpacity: 0.5,
     harvestData: {},
     rawMarkers: []
 };

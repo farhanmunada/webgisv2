@@ -1,14 +1,18 @@
 export const RoutePanel = {
-    element: document.getElementById('route-info-panel'),
-
     show(distance, duration) {
-        if (!this.element) return;
-        document.getElementById('route-distance').textContent = distance;
-        document.getElementById('route-duration').textContent = duration;
-        this.element.classList.remove('hidden');
+        const el = document.getElementById('route-info-panel');
+        if (!el) return;
+        
+        const distEl = document.getElementById('route-distance');
+        const durEl = document.getElementById('route-duration');
+        if (distEl) distEl.textContent = distance;
+        if (durEl) durEl.textContent = duration;
+        
+        el.classList.remove('hidden');
     },
 
     hide() {
-        if (this.element) this.element.classList.add('hidden');
+        const el = document.getElementById('route-info-panel');
+        if (el) el.classList.add('hidden');
     }
 };

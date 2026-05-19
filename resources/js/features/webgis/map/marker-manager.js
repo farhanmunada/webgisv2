@@ -38,13 +38,36 @@ export const MarkerManager = {
 
             State.heatmapData.push(new google.maps.LatLng(lat, lng));
             marker.addListener("click", () => onMarkerClick(umkm, marker));
-            State.markers.push({ marker, category: catName });
+            State.markers.push({ 
+                marker, 
+                category: catName,
+                name: umkm.nama_umkm ? umkm.nama_umkm.toLowerCase().trim() : ''
+            });
+        });
+    },
+
+    applyFilters() {
+        if (!State.isMarkersVisible) {
+            State.markers.forEach(m => m.marker.setVisible(false));
+            return;
+        }
+
+        const searchVal = document.getElementById('search-input')?.value.toLowerCase().trim() || '';
+        const activeChip = document.querySelector('.chip.active');
+        const categoryName = activeChip ? (activeChip.getAttribute('data-category') || activeChip.textContent.trim()) : 'all';
+
+        State.markers.forEach(m => {
+            const matchesCategory = (categoryName === 'all' || m.category.toLowerCase().trim() === categoryName.toLowerCase().trim());
+            const matchesSearch = (!searchVal || m.name.includes(searchVal));
+            m.marker.setVisible(matchesCategory && matchesSearch);
         });
     },
 
     filter(categoryName) {
-        State.markers.forEach(m => {
-            m.marker.setVisible(categoryName === 'all' || m.category === categoryName);
-        });
+        this.applyFilters();
+    },
+
+    updateMarkerVisibility() {
+        this.applyFilters();
     }
 };

@@ -136,6 +136,37 @@ export const WebGisApp = {
             PolygonManager.showInfo(e);
         });
 
+        // Helper to update marker visibility and the toggle button UI state
+        const updateMarkerToggleUI = (visible) => {
+            const btn = document.getElementById('marker-toggle');
+            if (!btn) return;
+            State.isMarkersVisible = visible;
+            btn.classList.toggle('bg-[#8B4513]', visible);
+            btn.classList.toggle('text-white', visible);
+            btn.classList.toggle('text-slate-700', !visible);
+            MarkerManager.updateMarkerVisibility();
+        };
+
+        // Helper to slide-out/fade-out search bar and category filters
+        const updateSearchHeaderVisibility = () => {
+            const container = document.getElementById('search-header-container');
+            if (!container) return;
+            const hide = State.isHeatmapActive || State.polygonLayerActive;
+            if (hide) {
+                container.classList.remove('translate-y-0', 'opacity-100');
+                container.classList.add('-translate-y-24', 'opacity-0');
+            } else {
+                container.classList.remove('-translate-y-24', 'opacity-0');
+                container.classList.add('translate-y-0', 'opacity-100');
+            }
+        };
+
+        // Marker Toggle Click (Manual override button requested by user)
+        document.getElementById('marker-toggle')?.addEventListener('click', () => {
+            const visible = !State.isMarkersVisible;
+            updateMarkerToggleUI(visible);
+        });
+
         // Heatmap Toggle
         document.getElementById('heatmap-toggle')?.addEventListener('click', (e) => {
             if (!this.checkAuth('heatmap')) return;
@@ -144,6 +175,17 @@ export const WebGisApp = {
             HeatmapManager.toggle(active);
             e.currentTarget.classList.toggle('bg-[#8B4513]', active);
             e.currentTarget.classList.toggle('text-white', active);
+            e.currentTarget.classList.toggle('text-slate-700', !active);
+            
+            if (active) {
+                // Auto-hide markers when heatmap opens
+                updateMarkerToggleUI(false);
+            } else if (!State.polygonLayerActive) {
+                // Restore markers only if polygon layer is also closed
+                updateMarkerToggleUI(true);
+            }
+
+            updateSearchHeaderVisibility();
         });
 
         // Polygon Toggle
@@ -154,6 +196,17 @@ export const WebGisApp = {
             PolygonManager.toggle(active);
             e.currentTarget.classList.toggle('bg-[#8B4513]', active);
             e.currentTarget.classList.toggle('text-white', active);
+            e.currentTarget.classList.toggle('text-slate-700', !active);
+            
+            if (active) {
+                // Auto-hide markers when polygon opens
+                updateMarkerToggleUI(false);
+            } else if (!State.isHeatmapActive) {
+                // Restore markers only if heatmap is also closed
+                updateMarkerToggleUI(true);
+            }
+
+            updateSearchHeaderVisibility();
         });
 
         // Tombol Lokasi Saya

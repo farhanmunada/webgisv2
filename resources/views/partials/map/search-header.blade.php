@@ -1,4 +1,4 @@
-<div class="absolute top-0 left-0 right-0 z-10 px-4 pt-4 sm:pt-6 pointer-events-none">
+<div id="search-header-container" class="absolute top-0 left-0 right-0 z-10 px-4 pt-4 sm:pt-6 pointer-events-none transition-all duration-300 transform translate-y-0 opacity-100">
     <div class="max-w-md mx-auto pointer-events-auto">
         <!-- Search Bar -->
         <div class="glass-panel flex items-center rounded-full px-4 py-3">

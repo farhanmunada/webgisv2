@@ -1,7 +1,8 @@
 export const Chips = {
-    container: document.getElementById('category-container'),
+    container: null,
 
     render(categories, onChipClick) {
+        this.container = document.getElementById('category-container');
         if (!this.container) return;
         this.container.innerHTML = '';
 

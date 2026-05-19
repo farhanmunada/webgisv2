@@ -2,10 +2,9 @@ import { CONFIG } from '../../../core/config.js';
 import { Formatter } from '../utils/formatter.js';
 
 export const BottomSheet = {
-    element: document.getElementById('bottom-sheet'),
-
     open(umkm, onRouteClick) {
-        if (!this.element) return;
+        const el = document.getElementById('bottom-sheet');
+        if (!el) return;
 
         // Photo
         const photoContainer = document.getElementById('bs-photo-container');
@@ -35,11 +34,12 @@ export const BottomSheet = {
             newRouteBtn.addEventListener('click', onRouteClick);
         }
 
-        this.element.classList.add('open');
+        el.classList.add('open');
     },
 
     close() {
-        if (this.element) this.element.classList.remove('open');
+        const el = document.getElementById('bottom-sheet');
+        if (el) el.classList.remove('open');
     },
 
     renderProducts(products) {

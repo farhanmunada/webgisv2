@@ -19,7 +19,7 @@ class MapController extends Controller
             'products' => function($query) {
                 $query->latest()->limit(3);
             }
-        ])->get(['id', 'latitude', 'longitude', 'kategori_id', 'nama_umkm', 'alamat', 'foto', 'deskripsi']);
+        ])->get(['id', 'latitude', 'longitude', 'kategori_id', 'nama_umkm', 'alamat', 'foto', 'deskripsi', 'kecamatan']);
         
         return response()->json($umkms);
     }
