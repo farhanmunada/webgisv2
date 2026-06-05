@@ -36,7 +36,6 @@ export const MarkerManager = {
                 }
             });
 
-            State.heatmapData.push(new google.maps.LatLng(lat, lng));
             marker.addListener("click", () => onMarkerClick(umkm, marker));
             State.markers.push({ 
                 marker, 

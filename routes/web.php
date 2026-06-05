@@ -53,7 +53,6 @@ Route::get('/auth/google/callback', [\App\Http\Controllers\Auth\GoogleController
 Route::middleware('auth')->group(function () {
     // Data Routes for Map
     Route::prefix('data')->group(function () {
-        Route::get('/heatmap', [\App\Http\Controllers\Api\MapController::class, 'getHeatmap']);
         Route::get('/polygons', [\App\Http\Controllers\Api\MapController::class, 'getPolygons']);
     });
 });

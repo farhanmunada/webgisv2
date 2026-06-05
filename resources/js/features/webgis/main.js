@@ -4,7 +4,6 @@ import { LocationService } from '../../services/location.service.js';
 import { MapManager } from './map/map-manager.js';
 import { MarkerManager } from './map/marker-manager.js';
 import { PolygonManager } from './map/polygon-manager.js';
-import { HeatmapManager } from './map/heatmap-manager.js';
 import { RouteManager } from './map/route-manager.js';
 import { BottomSheet } from './ui/bottom-sheet.js';
 import { Chips } from './ui/chips.js';
@@ -17,7 +16,6 @@ export const WebGisApp = {
         // 1. Inisialisasi Peta & Manager
         MapManager.init();
         PolygonManager.init();
-        HeatmapManager.init(google);
         RouteManager.init();
         Sidebar.init();
 
@@ -39,9 +37,7 @@ export const WebGisApp = {
         if (pendingFeature && window.AUTH_CONFIG.isAuthenticated) {
             localStorage.removeItem('pending_feature');
 
-            if (pendingFeature === 'heatmap') {
-                document.getElementById('heatmap-toggle')?.click();
-            } else if (pendingFeature === 'polygon') {
+            if (pendingFeature === 'polygon') {
                 document.getElementById('polygon-toggle')?.click();
             } else if (pendingFeature.startsWith('route_')) {
                 const umkmId = pendingFeature.split('_')[1];
@@ -151,7 +147,7 @@ export const WebGisApp = {
         const updateSearchHeaderVisibility = () => {
             const container = document.getElementById('search-header-container');
             if (!container) return;
-            const hide = State.isHeatmapActive || State.polygonLayerActive;
+            const hide = State.polygonLayerActive;
             if (hide) {
                 container.classList.remove('translate-y-0', 'opacity-100');
                 container.classList.add('-translate-y-24', 'opacity-0');
@@ -167,27 +163,6 @@ export const WebGisApp = {
             updateMarkerToggleUI(visible);
         });
 
-        // Heatmap Toggle
-        document.getElementById('heatmap-toggle')?.addEventListener('click', (e) => {
-            if (!this.checkAuth('heatmap')) return;
-
-            const active = !State.isHeatmapActive;
-            HeatmapManager.toggle(active);
-            e.currentTarget.classList.toggle('bg-[#8B4513]', active);
-            e.currentTarget.classList.toggle('text-white', active);
-            e.currentTarget.classList.toggle('text-slate-700', !active);
-            
-            if (active) {
-                // Auto-hide markers when heatmap opens
-                updateMarkerToggleUI(false);
-            } else if (!State.polygonLayerActive) {
-                // Restore markers only if polygon layer is also closed
-                updateMarkerToggleUI(true);
-            }
-
-            updateSearchHeaderVisibility();
-        });
-
         // Polygon Toggle
         document.getElementById('polygon-toggle')?.addEventListener('click', (e) => {
             if (!this.checkAuth('polygon')) return;
@@ -201,8 +176,7 @@ export const WebGisApp = {
             if (active) {
                 // Auto-hide markers when polygon opens
                 updateMarkerToggleUI(false);
-            } else if (!State.isHeatmapActive) {
-                // Restore markers only if heatmap is also closed
+            } else {
                 updateMarkerToggleUI(true);
             }
 

@@ -42,7 +42,6 @@
                     </h3>
                     <ul class="space-y-2 text-sm text-[#8B4513]/80 font-medium">
                         <li>• Pemetaan Interaktif UMKM</li>
-                        <li>• Visualisasi Heatmap Kepadatan</li>
                         <li>• Analisis Hasil Panen Per Wilayah</li>
                         <li>• Katalog Produk Digital</li>
                     </ul>

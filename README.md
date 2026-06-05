@@ -5,7 +5,6 @@ WebGIS Kopi Temanggung adalah platform sistem informasi geografis yang dirancang
 ## Fitur Utama
 
 - Pemetaan Interaktif: Menampilkan lokasi UMKM kopi menggunakan Google Maps API.
-- Heatmap Densitas: Visualisasi kepadatan UMKM di berbagai wilayah Kabupaten Temanggung.
 - Katalog Produk: Daftar produk kopi unggulan dari berbagai UMKM yang terdaftar.
 - Manajemen Profil UMKM: Memungkinkan pemilik usaha untuk mendaftarkan dan memperbarui informasi usaha mereka secara mandiri.
 - Visualisasi Hasil Panen: Menampilkan data statistik hasil panen kopi per kecamatan melalui pop-up pada poligon wilayah.

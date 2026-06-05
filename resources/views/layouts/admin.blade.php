@@ -32,22 +32,22 @@
                 </div>
                 <nav class="flex-1 p-6 space-y-1">
                     <a href="{{ route('admin.dashboard') }}" class="flex items-center px-4 py-3 text-sm font-bold {{ request()->routeIs('admin.dashboard') ? 'bg-amber-50 text-[#8B4513] rounded-2xl' : 'text-slate-500 hover:bg-slate-50 rounded-2xl' }}">
-                        1. Dashboard
+                        Dashboard
                     </a>
                     <a href="{{ route('admin.umkm.index') }}" class="flex items-center px-4 py-3 text-sm font-bold {{ request()->routeIs('admin.umkm.index') ? 'bg-amber-50 text-[#8B4513] rounded-2xl' : 'text-slate-500 hover:bg-slate-50 rounded-2xl' }}">
-                        2. Kelola UMKM
+                        Kelola UMKM
                     </a>
                     <a href="{{ route('admin.umkm.approval.index') }}" class="flex items-center px-4 py-3 text-sm font-bold {{ request()->routeIs('admin.umkm.approval.*') ? 'bg-amber-50 text-[#8B4513] rounded-2xl' : 'text-slate-500 hover:bg-slate-50 rounded-2xl' }}">
-                        3. Approval UMKM
+                        Approval UMKM
                     </a>
                     <a href="{{ route('admin.products.index') }}" class="flex items-center px-4 py-3 text-sm font-bold {{ request()->routeIs('admin.products.*') ? 'bg-amber-50 text-[#8B4513] rounded-2xl' : 'text-slate-500 hover:bg-slate-50 rounded-2xl' }}">
-                        4. Daftar Produk
+                        Daftar Produk
                     </a>
                     <a href="{{ route('admin.hasil-panen.index') }}" class="flex items-center px-4 py-3 text-sm font-bold {{ request()->routeIs('admin.hasil-panen.*') ? 'bg-amber-50 text-[#8B4513] rounded-2xl' : 'text-slate-500 hover:bg-slate-50 rounded-2xl' }}">
-                        5. Kelola Hasil Panen
+                        Kelola Hasil Panen
                     </a>
                     <a href="{{ route('admin.categories.index') }}" class="flex items-center px-4 py-3 text-sm font-bold {{ request()->routeIs('admin.categories.*') ? 'bg-amber-50 text-[#8B4513] rounded-2xl' : 'text-slate-500 hover:bg-slate-50 rounded-2xl' }}">
-                        6. Kelola Kategori
+                        Kelola Kategori
                     </a>
                     <div class="pt-10 space-y-2">
                         <a href="/" class="flex items-center px-4 py-3 text-sm font-bold text-[#8B4513] bg-amber-50 rounded-2xl hover:bg-amber-100 transition-colors">

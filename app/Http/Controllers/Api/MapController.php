@@ -24,11 +24,7 @@ class MapController extends Controller
         return response()->json($umkms);
     }
 
-    public function getHeatmap()
-    {
-        $points = Umkm::where('status', 'approved')->get(['latitude', 'longitude']);
-        return response()->json($points);
-    }
+
 
     public function getPolygons()
     {
