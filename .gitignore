@@ -29,3 +29,5 @@ Thumbs.db
 docker-compose.override.yml
 storage/app/public/umkm/*
 !storage/app/public/umkm/.gitignore
+/data_umkm.csv
+
