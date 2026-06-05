@@ -61,7 +61,7 @@ export const BottomSheet = {
                     <a href="/katalog/${p.id}" class="min-w-[140px] max-w-[140px] bg-white border border-slate-100 rounded-2xl overflow-hidden shadow-sm flex-shrink-0 hover:shadow-md hover:border-amber-200 transition-all block">
                         <div class="h-24 w-full overflow-hidden bg-slate-50">${imgDiv}</div>
                         <div class="p-2.5">
-                            <h4 class="text-[10px] font-bold text-slate-900 truncate leading-tight">${p.nama_produk}</h4>
+                            <h4 class="text-[10px] font-bold text-slate-900 truncate leading-tight">${Formatter.escapeHtml(p.nama_produk)}</h4>
                             <p class="text-xs font-black text-amber-700 mt-1">${Formatter.currency(p.harga)}</p>
                         </div>
                     </a>

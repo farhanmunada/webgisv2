@@ -21,6 +21,9 @@ class ProductController extends Controller
 
     public function destroy(Product $product)
     {
+        if ($product->foto_produk) {
+            \Illuminate\Support\Facades\Storage::disk('public')->delete($product->foto_produk);
+        }
         $product->delete();
         return redirect()->route('admin.products.index')->with('success', 'Produk berhasil dihapus.');
     }

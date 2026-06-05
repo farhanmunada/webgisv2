@@ -91,6 +91,9 @@ class UmkmController extends Controller
 
     public function destroy(Umkm $umkm)
     {
+        if ($umkm->foto) {
+            \Illuminate\Support\Facades\Storage::disk('public')->delete($umkm->foto);
+        }
         $umkm->delete();
         return redirect()->route('admin.umkm.index')->with('success', 'UMKM berhasil dihapus.');
     }

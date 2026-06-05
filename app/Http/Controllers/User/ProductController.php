@@ -72,7 +72,7 @@ class ProductController extends Controller
             'foto_produk' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
         ]);
 
-        $data = $request->all();
+        $data = $request->only(['nama_produk', 'harga', 'deskripsi']);
 
         if ($request->hasFile('foto_produk')) {
             if ($umkmProduct->foto_produk) {

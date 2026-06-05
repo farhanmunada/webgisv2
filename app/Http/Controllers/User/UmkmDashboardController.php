@@ -67,7 +67,7 @@ class UmkmDashboardController extends Controller
             'foto' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
         ]);
 
-        $data = $request->all();
+        $data = $request->only(['nama_umkm', 'kategori_id', 'kecamatan', 'alamat', 'latitude', 'longitude', 'deskripsi']);
 
         if ($request->hasFile('foto')) {
             if ($umkm->foto) {

@@ -23,6 +23,9 @@ class UmkmApprovalController extends Controller
     public function reject(Umkm $umkm)
     {
         $nama = $umkm->nama_umkm;
+        if ($umkm->foto) {
+            \Illuminate\Support\Facades\Storage::disk('public')->delete($umkm->foto);
+        }
         $umkm->delete(); // Data dihapus sesuai PRD
         return back()->with('success', "UMKM {$nama} telah ditolak dan datanya dihapus.");
     }
