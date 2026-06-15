@@ -87,14 +87,15 @@
             <div class="flex-1 flex flex-col h-screen overflow-hidden">
                 <header class="h-20 bg-white border-b border-slate-100 flex items-center justify-between px-4 sm:px-8 shrink-0">
                     <div class="flex items-center">
-                        <button @click="sidebarOpen = true" class="lg:hidden mr-4 text-slate-500"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg></button>
-                        <h2 class="font-black text-xl text-slate-800 leading-tight">{{ $header ?? 'Dashboard' }}</h2>
+                        <button @click="sidebarOpen = true" class="lg:hidden mr-3 sm:mr-4 text-slate-500"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg></button>
+                        <h2 class="font-black text-sm sm:text-lg md:text-xl text-slate-800 leading-tight">{{ $header ?? 'Dashboard' }}</h2>
                     </div>
                     
-                    <div class="flex items-center gap-4">
-                        <a href="/" class="flex items-center gap-2 px-6 py-3 bg-[#8B4513] text-white rounded-2xl text-xs font-black shadow-lg shadow-amber-900/20 hover:bg-[#703610] transition-all transform active:scale-95 uppercase tracking-widest">
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L16 4m0 13V4m0 0L9 7"></path></svg>
-                            Kembali ke Peta
+                    <div class="flex items-center">
+                        <a href="/" class="flex items-center gap-1.5 px-3 sm:px-6 py-2.5 sm:py-3 bg-[#8B4513] text-white rounded-xl sm:rounded-2xl text-[10px] sm:text-xs font-black shadow-lg shadow-amber-900/20 hover:bg-[#703610] transition-all transform active:scale-95 uppercase tracking-widest">
+                            <svg class="w-3.5 h-3.5 sm:w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L16 4m0 13V4m0 0L9 7"></path></svg>
+                            <span class="hidden sm:inline">Kembali ke Peta</span>
+                            <span class="sm:hidden">Peta</span>
                         </a>
                     </div>
                 </header>

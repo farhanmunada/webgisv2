@@ -3,9 +3,9 @@
         Ringkasan Sistem
     </x-slot>
 
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
         <!-- Card 1 -->
-        <div class="bg-white overflow-hidden shadow-sm border border-slate-100 rounded-3xl p-6">
+        <div class="bg-white overflow-hidden shadow-sm border border-slate-100 rounded-2xl sm:rounded-3xl p-5 sm:p-6">
             <div class="flex items-center justify-between">
                 <div>
                     <p class="text-sm font-bold text-slate-400 uppercase tracking-wider">Pengguna</p>
@@ -22,7 +22,7 @@
         </div>
 
         <!-- Card 2 -->
-        <div class="bg-white overflow-hidden shadow-sm border border-slate-100 rounded-3xl p-6">
+        <div class="bg-white overflow-hidden shadow-sm border border-slate-100 rounded-2xl sm:rounded-3xl p-5 sm:p-6">
             <div class="flex items-center justify-between">
                 <div>
                     <p class="text-sm font-bold text-slate-400 uppercase tracking-wider">Total UMKM</p>
@@ -38,7 +38,7 @@
         </div>
 
         <!-- Card 3 -->
-        <div class="bg-white overflow-hidden shadow-sm border border-slate-100 rounded-3xl p-6">
+        <div class="bg-white overflow-hidden shadow-sm border border-slate-100 rounded-2xl sm:rounded-3xl p-5 sm:p-6">
             <div class="flex items-center justify-between">
                 <div>
                     <p class="text-sm font-bold text-slate-400 uppercase tracking-wider">Total Produk</p>
@@ -54,7 +54,7 @@
         </div>
 
         <!-- Card 4 -->
-        <div class="bg-white overflow-hidden shadow-sm border border-slate-100 rounded-3xl p-6">
+        <div class="bg-white overflow-hidden shadow-sm border border-slate-100 rounded-2xl sm:rounded-3xl p-5 sm:p-6">
             <div class="flex items-center justify-between">
                 <div>
                     <p class="text-sm font-bold text-slate-400 uppercase tracking-wider">Menunggu</p>

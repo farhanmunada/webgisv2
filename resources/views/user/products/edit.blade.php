@@ -8,7 +8,7 @@
             @csrf
             @method('PATCH')
             
-            <div class="bg-white rounded-[2.5rem] border border-slate-100 shadow-sm p-8 space-y-6">
+            <div class="bg-white rounded-[2rem] sm:rounded-[2.5rem] border border-slate-100 shadow-sm p-6 sm:p-8 space-y-6">
                 <div>
                     <label class="block text-[10px] font-black text-slate-400 uppercase tracking-widest mb-3">Nama Produk</label>
                     <input type="text" name="nama_produk" value="{{ old('nama_produk', $product->nama_produk) }}" required
@@ -42,12 +42,12 @@
                 </div>
             </div>
 
-            <div class="flex items-center gap-4">
-                <button type="submit" class="flex-1 py-5 bg-[#8B4513] text-white rounded-2xl font-black shadow-xl shadow-amber-900/20 hover:bg-[#703610] transition-all transform active:scale-95 flex items-center justify-center gap-3">
+            <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
+                <button type="submit" class="flex-1 py-3.5 sm:py-4 bg-[#8B4513] text-white rounded-xl sm:rounded-2xl font-black text-xs sm:text-sm shadow-xl shadow-amber-900/20 hover:bg-[#703610] transition-all transform active:scale-95 flex items-center justify-center gap-2">
                     SIMPAN PERUBAHAN
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                    <svg class="w-4 h-4 sm:w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
                 </button>
-                <a href="{{ route('dashboard') }}" class="px-8 py-5 bg-white text-slate-400 border border-slate-200 rounded-2xl font-black hover:text-slate-600 transition-all">Batal</a>
+                <a href="{{ route('dashboard') }}" class="px-6 sm:px-8 py-3.5 sm:py-4 bg-white text-slate-400 border border-slate-200 rounded-xl sm:rounded-2xl font-black text-xs sm:text-sm hover:text-slate-600 transition-all text-center">Batal</a>
             </div>
         </form>
     </div>

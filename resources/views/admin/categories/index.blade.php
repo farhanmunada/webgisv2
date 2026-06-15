@@ -8,28 +8,28 @@
             <h3 class="text-xl font-bold text-slate-900">Kategori UMKM</h3>
             <p class="text-slate-500 text-sm mt-1">Klasifikasi unit usaha kopi Temanggung.</p>
         </div>
-        <a href="{{ route('admin.categories.create') }}" class="px-6 py-3 bg-[#8B4513] text-white rounded-2xl font-bold shadow-lg shadow-amber-900/20 hover:bg-[#703610] transition-all transform active:scale-95 flex items-center gap-2">
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg>
+        <a href="{{ route('admin.categories.create') }}" class="px-4 sm:px-6 py-2.5 sm:py-3 bg-[#8B4513] text-white rounded-xl sm:rounded-2xl text-[10px] sm:text-xs font-black shadow-lg shadow-amber-900/20 hover:bg-[#703610] transition-all transform active:scale-95 flex items-center gap-2 uppercase tracking-widest w-full sm:w-auto justify-center">
+            <svg class="w-3.5 h-3.5 sm:w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M12 4v16m8-8H4"></path></svg>
             Tambah Kategori
         </a>
     </div>
 
-    <div class="bg-white rounded-3xl border border-slate-100 shadow-[0_8px_30px_rgb(0,0,0,0.02)] overflow-hidden max-w-4xl">
+    <div class="bg-white rounded-2xl sm:rounded-3xl border border-slate-100 shadow-[0_8px_30px_rgb(0,0,0,0.02)] overflow-hidden max-w-4xl">
         <div class="overflow-x-auto">
             <table class="w-full text-left border-collapse">
                 <thead>
                     <tr class="bg-slate-50/50 border-b border-slate-100">
-                        <th class="px-8 py-5 text-xs font-bold text-slate-400 uppercase tracking-wider">Nama Kategori</th>
-                        <th class="px-8 py-5 text-xs font-bold text-slate-400 uppercase tracking-wider text-right">Aksi</th>
+                        <th class="px-3 sm:px-8 py-3.5 sm:py-5 text-xs font-bold text-slate-400 uppercase tracking-wider">Nama Kategori</th>
+                        <th class="px-3 sm:px-8 py-3.5 sm:py-5 text-xs font-bold text-slate-400 uppercase tracking-wider text-right">Aksi</th>
                     </tr>
                 </thead>
                 <tbody class="divide-y divide-slate-50">
                     @forelse ($categories as $category)
                         <tr class="hover:bg-slate-50/50 transition-colors group">
-                            <td class="px-8 py-5">
-                                <span class="font-bold text-slate-800 group-hover:text-[#8B4513] transition-colors">{{ $category->nama_kategori }}</span>
+                            <td class="px-3 sm:px-8 py-3.5 sm:py-5">
+                                <span class="font-bold text-slate-800 group-hover:text-[#8B4513] transition-colors text-xs sm:text-sm">{{ $category->nama_kategori }}</span>
                             </td>
-                            <td class="px-8 py-5 text-right">
+                            <td class="px-3 sm:px-8 py-3.5 sm:py-5 text-right">
                                 <div class="flex justify-end gap-2">
                                     <a href="{{ route('admin.categories.edit', $category) }}" class="p-2 text-slate-400 hover:text-amber-600 hover:bg-amber-50 rounded-xl transition-all">
                                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path></svg>

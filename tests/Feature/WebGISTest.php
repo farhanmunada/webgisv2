@@ -115,6 +115,10 @@ class WebGISTest extends TestCase
         $response = $this->get('/katalog');
         $response->assertStatus(200);
         $response->assertSee('Produk Unggulan');
+
+        $response = $this->get('/panduan');
+        $response->assertStatus(200);
+        $response->assertSee('Petunjuk & Ketentuan Penggunaan', false);
     }
 
     public function test_guest_is_redirected_when_accessing_dashboard()

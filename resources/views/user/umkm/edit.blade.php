@@ -11,8 +11,8 @@
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
                 <!-- Left Column -->
                 <div class="lg:col-span-2 space-y-8">
-                    <div class="bg-white rounded-[2.5rem] border border-slate-100 shadow-sm p-8 space-y-6">
-                        <h3 class="text-lg font-black text-slate-900 border-b border-slate-50 pb-6 -mx-8 px-8">Informasi Dasar</h3>
+                    <div class="bg-white rounded-[2rem] sm:rounded-[2.5rem] border border-slate-100 shadow-sm p-6 sm:p-8 space-y-6">
+                        <h3 class="text-lg font-black text-slate-900 border-b border-slate-50 pb-6 -mx-6 sm:-mx-8 px-6 sm:px-8">Informasi Dasar</h3>
                         
                         <div>
                             <label class="block text-[10px] font-black text-slate-400 uppercase tracking-widest mb-3">Nama UMKM</label>
@@ -49,14 +49,14 @@
                     </div>
 
                     <!-- Map Section -->
-                    <div class="bg-white rounded-[2.5rem] border border-slate-100 shadow-sm overflow-hidden">
-                        <div class="p-8 border-b border-slate-50 flex items-center justify-between">
+                    <div class="bg-white rounded-[2rem] sm:rounded-[2.5rem] border border-slate-100 shadow-sm overflow-hidden">
+                        <div class="p-6 sm:p-8 border-b border-slate-50 flex items-center justify-between">
                             <div>
                                 <h3 class="text-lg font-black text-slate-900">Lokasi di Peta</h3>
                                 <p class="text-slate-500 text-xs mt-1">Klik atau geser marker untuk mengubah titik lokasi.</p>
                             </div>
                         </div>
-                        <div class="p-8 space-y-6">
+                        <div class="p-6 sm:p-8 space-y-6">
                             <div id="map-picker" class="w-full h-64 rounded-3xl border border-slate-200 bg-slate-50"></div>
                             <div class="grid grid-cols-2 gap-6">
                                 <input type="hidden" name="latitude" id="lat" value="{{ $umkm->latitude }}">
@@ -73,7 +73,7 @@
 
                 <!-- Right Column -->
                 <div class="space-y-8">
-                    <div class="bg-white rounded-[2.5rem] border border-slate-100 shadow-sm p-8">
+                    <div class="bg-white rounded-[2rem] sm:rounded-[2.5rem] border border-slate-100 shadow-sm p-6 sm:p-8">
                         <label class="block text-[10px] font-black text-slate-400 uppercase tracking-widest mb-6 text-center">Foto Usaha</label>
                         <div id="image-preview" class="w-full aspect-square rounded-3xl bg-slate-50 border-2 border-dashed border-slate-200 overflow-hidden mb-6">
                             @if($umkm->foto)
@@ -85,9 +85,9 @@
                         <input type="file" name="foto" id="foto-input" class="w-full text-xs text-slate-400 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-[10px] file:font-black file:bg-[#8B4513] file:text-white cursor-pointer">
                     </div>
 
-                    <button type="submit" class="w-full py-5 bg-[#8B4513] text-white rounded-2xl font-black shadow-xl shadow-amber-900/20 hover:bg-[#703610] transition-all transform active:scale-95 flex items-center justify-center gap-3">
+                    <button type="submit" class="w-full py-3.5 sm:py-4 bg-[#8B4513] text-white rounded-xl sm:rounded-2xl font-black text-xs sm:text-sm shadow-xl shadow-amber-900/20 hover:bg-[#703610] transition-all transform active:scale-95 flex items-center justify-center gap-2">
                         SIMPAN PERUBAHAN
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                        <svg class="w-4 h-4 sm:w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
                     </button>
                 </div>
             </div>

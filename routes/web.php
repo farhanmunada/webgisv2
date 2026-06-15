@@ -42,6 +42,7 @@ Route::get('/katalog/{product}', [\App\Http\Controllers\PublicController::class,
 Route::get('/umkm/{umkm}', [\App\Http\Controllers\PublicController::class, 'showUmkm'])->name('umkm.detail');
 Route::get('/privacy-policy', function() { return view('public.privacy'); })->name('privacy');
 Route::get('/about', function() { return view('public.about'); })->name('about');
+Route::get('/panduan', function() { return view('public.guide'); })->name('guide');
 
 require __DIR__.'/auth.php';
 

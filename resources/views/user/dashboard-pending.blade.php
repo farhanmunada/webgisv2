@@ -29,13 +29,13 @@
             </div>
         </div>
 
-        <div class="mt-12 flex gap-4">
-            <a href="/" class="px-8 py-4 bg-slate-900 text-white rounded-2xl font-black text-xs uppercase tracking-widest hover:bg-slate-800 transition-all shadow-xl shadow-slate-200">
+        <div class="mt-10 flex flex-col sm:flex-row gap-3 w-full max-w-md mx-auto justify-center">
+            <a href="/" class="w-full px-5 sm:px-8 py-3.5 sm:py-4 bg-slate-900 text-white rounded-xl sm:rounded-2xl font-black text-[10px] sm:text-xs uppercase tracking-widest hover:bg-slate-800 transition-all shadow-xl shadow-slate-200 text-center">
                 Kembali ke Peta
             </a>
-            <form action="{{ route('logout') }}" method="POST">
+            <form action="{{ route('logout') }}" method="POST" class="w-full">
                 @csrf
-                <button type="submit" class="px-8 py-4 bg-white border border-slate-200 text-slate-600 rounded-2xl font-black text-xs uppercase tracking-widest hover:bg-slate-50 transition-all">
+                <button type="submit" class="w-full px-5 sm:px-8 py-3.5 sm:py-4 bg-white border border-slate-200 text-slate-600 rounded-xl sm:rounded-2xl font-black text-[10px] sm:text-xs uppercase tracking-widest hover:bg-slate-50 transition-all text-center">
                     Keluar Akun
                 </button>
             </form>

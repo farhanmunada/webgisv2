@@ -5,7 +5,7 @@
 
     <div class="max-w-5xl">
         <div class="mb-8 flex items-center justify-between">
-            <a href="{{ route('admin.umkm.index') }}" class="inline-flex items-center gap-2 text-sm font-bold text-slate-500 hover:text-[#8B4513] transition-colors">
+            <a href="{{ route('admin.umkm.index') }}" class="inline-flex items-center gap-2 text-xs sm:text-sm font-bold text-slate-500 hover:text-[#8B4513] transition-colors">
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
                 Kembali ke Daftar
             </a>
@@ -20,8 +20,8 @@
             <!-- Left Column: Main Info -->
             <div class="lg:col-span-2 space-y-8">
                 <!-- Location Picker (Opsi Utama) -->
-                <div class="bg-white rounded-3xl border border-slate-100 shadow-[0_8px_30px_rgb(0,0,0,0.02)] overflow-hidden">
-                    <div class="p-8 border-b border-slate-50">
+                <div class="bg-white rounded-2xl sm:rounded-3xl border border-slate-100 shadow-[0_8px_30px_rgb(0,0,0,0.02)] overflow-hidden">
+                    <div class="p-5 sm:p-8 border-b border-slate-50">
                         <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
                             <div>
                                 <h3 class="text-lg font-black text-slate-900">Titik Lokasi</h3>
@@ -34,39 +34,39 @@
                         </div>
                     </div>
                     <div id="map-picker" class="w-full h-80 bg-slate-50"></div>
-                    <div class="p-8 bg-slate-50/50">
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="p-5 sm:p-8 bg-slate-50/50">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
                             <div>
                                 <label class="block text-[10px] font-black text-slate-400 uppercase tracking-widest mb-2">Latitude</label>
                                 <input type="text" name="latitude" id="lat" value="{{ old('latitude') }}" required readonly
-                                    class="w-full px-5 py-4 bg-white border border-slate-200 rounded-2xl focus:ring-2 focus:ring-[#8B4513]/20 focus:border-[#8B4513] outline-none transition-all font-mono text-sm">
+                                    class="w-full px-4 sm:px-5 py-3 sm:py-4 bg-white border border-slate-200 rounded-xl sm:rounded-2xl focus:ring-2 focus:ring-[#8B4513]/20 focus:border-[#8B4513] outline-none transition-all font-mono text-sm">
                             </div>
                             <div>
                                 <label class="block text-[10px] font-black text-slate-400 uppercase tracking-widest mb-2">Longitude</label>
                                 <input type="text" name="longitude" id="lng" value="{{ old('longitude') }}" required readonly
-                                    class="w-full px-5 py-4 bg-white border border-slate-200 rounded-2xl focus:ring-2 focus:ring-[#8B4513]/20 focus:border-[#8B4513] outline-none transition-all font-mono text-sm">
+                                    class="w-full px-4 sm:px-5 py-3 sm:py-4 bg-white border border-slate-200 rounded-xl sm:rounded-2xl focus:ring-2 focus:ring-[#8B4513]/20 focus:border-[#8B4513] outline-none transition-all font-mono text-sm">
                             </div>
                         </div>
                         <p class="text-[10px] text-slate-400 mt-4 italic">*Koordinat terisi otomatis saat Anda memilih titik di peta.</p>
                     </div>
                 </div>
 
-                <div class="bg-white rounded-3xl border border-slate-100 shadow-sm p-8">
+                <div class="bg-white rounded-2xl sm:rounded-3xl border border-slate-100 shadow-sm p-5 sm:p-8">
                     <h3 class="text-lg font-black text-slate-900 mb-6">Detail Informasi</h3>
                     
                     <div class="space-y-6">
                         <div>
                             <label class="block text-sm font-bold text-slate-700 mb-2">Nama UMKM</label>
                             <input type="text" name="nama_umkm" value="{{ old('nama_umkm') }}" required placeholder="Contoh: Kopi Temanggung Abadi"
-                                class="w-full px-5 py-4 bg-slate-50 border border-slate-200 rounded-2xl focus:ring-2 focus:ring-[#8B4513]/20 focus:border-[#8B4513] outline-none transition-all">
+                                class="w-full px-4 sm:px-5 py-3 sm:py-4 bg-slate-50 border border-slate-200 rounded-xl sm:rounded-2xl focus:ring-2 focus:ring-[#8B4513]/20 focus:border-[#8B4513] outline-none transition-all">
                         </div>
 
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
                             <div>
                                 <label class="block text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] mb-3">Kategori Bisnis</label>
                                 <div class="relative group">
                                     <select name="kategori_id" required 
-                                        class="w-full px-6 py-4 bg-white border border-slate-200 rounded-2xl focus:ring-4 focus:ring-[#8B4513]/5 focus:border-[#8B4513] outline-none transition-all appearance-none cursor-pointer text-sm font-bold text-slate-700 hover:border-[#8B4513]/30 shadow-sm">
+                                        class="w-full px-4 sm:px-6 py-3 sm:py-4 bg-white border border-slate-200 rounded-xl sm:rounded-2xl focus:ring-4 focus:ring-[#8B4513]/5 focus:border-[#8B4513] outline-none transition-all appearance-none cursor-pointer text-sm font-bold text-slate-700 hover:border-[#8B4513]/30 shadow-sm">
                                         <option value="" disabled selected>Pilih Kategori UMKM</option>
                                         @foreach($categories as $category)
                                             <option value="{{ $category->id }}" {{ old('kategori_id') == $category->id ? 'selected' : '' }}>{{ $category->nama_kategori }}</option>
@@ -81,7 +81,7 @@
                                 <label class="block text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] mb-3">Wilayah Kecamatan</label>
                                 <div class="relative group">
                                     <select name="kecamatan" required 
-                                        class="w-full px-6 py-4 bg-white border border-slate-200 rounded-2xl focus:ring-4 focus:ring-[#8B4513]/5 focus:border-[#8B4513] outline-none transition-all appearance-none cursor-pointer text-sm font-bold text-slate-700 hover:border-[#8B4513]/30 shadow-sm">
+                                        class="w-full px-4 sm:px-6 py-3 sm:py-4 bg-white border border-slate-200 rounded-xl sm:rounded-2xl focus:ring-4 focus:ring-[#8B4513]/5 focus:border-[#8B4513] outline-none transition-all appearance-none cursor-pointer text-sm font-bold text-slate-700 hover:border-[#8B4513]/30 shadow-sm">
                                         <option value="" disabled selected>Pilih Lokasi Kecamatan</option>
                                         @foreach($kecamatans as $kec)
                                             <option value="{{ $kec }}" {{ old('kecamatan') == $kec ? 'selected' : '' }}>{{ $kec }}</option>
@@ -97,13 +97,13 @@
                         <div>
                             <label class="block text-sm font-bold text-slate-700 mb-2">Alamat Lengkap</label>
                             <textarea name="alamat" rows="3" required placeholder="Jl. Raya Temanggung No. 123..."
-                                class="w-full px-5 py-4 bg-slate-50 border border-slate-200 rounded-2xl focus:ring-2 focus:ring-[#8B4513]/20 focus:border-[#8B4513] outline-none transition-all">{{ old('alamat') }}</textarea>
+                                class="w-full px-4 sm:px-5 py-3 sm:py-4 bg-slate-50 border border-slate-200 rounded-xl sm:rounded-2xl focus:ring-2 focus:ring-[#8B4513]/20 focus:border-[#8B4513] outline-none transition-all font-semibold text-slate-700">{{ old('alamat') }}</textarea>
                         </div>
 
                         <div>
                             <label class="block text-sm font-bold text-slate-700 mb-2">Deskripsi (Opsional)</label>
                             <textarea name="deskripsi" rows="5" placeholder="Ceritakan tentang usaha kopi ini..."
-                                class="w-full px-5 py-4 bg-slate-50 border border-slate-200 rounded-2xl focus:ring-2 focus:ring-[#8B4513]/20 focus:border-[#8B4513] outline-none transition-all">{{ old('deskripsi') }}</textarea>
+                                class="w-full px-4 sm:px-5 py-3 sm:py-4 bg-slate-50 border border-slate-200 rounded-xl sm:rounded-2xl focus:ring-2 focus:ring-[#8B4513]/20 focus:border-[#8B4513] outline-none transition-all font-semibold text-slate-700">{{ old('deskripsi') }}</textarea>
                         </div>
                     </div>
                 </div>
@@ -111,7 +111,7 @@
 
             <!-- Right Column: Image & Action -->
             <div class="space-y-8">
-                <div class="bg-white rounded-3xl border border-slate-100 shadow-sm p-8">
+                <div class="bg-white rounded-2xl sm:rounded-3xl border border-slate-100 shadow-sm p-5 sm:p-8">
                     <h3 class="text-lg font-black text-slate-900 mb-6">Foto Unit (Opsional)</h3>
                     <div class="space-y-4">
                         <div id="image-preview" class="w-full aspect-video rounded-2xl bg-slate-50 border-2 border-dashed border-slate-200 flex flex-col items-center justify-center p-4 text-center overflow-hidden">
@@ -122,8 +122,8 @@
                     </div>
                 </div>
 
-                <div class="bg-white rounded-3xl border border-slate-100 shadow-sm p-8 sticky top-8">
-                    <button type="submit" class="w-full py-5 bg-[#8B4513] text-white rounded-2xl font-black shadow-lg shadow-amber-900/20 hover:bg-[#703610] transition-all transform active:scale-[0.98] flex items-center justify-center gap-3">
+                <div class="bg-white rounded-2xl sm:rounded-3xl border border-slate-100 shadow-sm p-5 sm:p-8 sticky top-8">
+                    <button type="submit" class="w-full py-3.5 sm:py-4 bg-[#8B4513] text-white rounded-xl sm:rounded-2xl text-xs sm:text-sm font-black shadow-lg shadow-amber-900/20 hover:bg-[#703610] transition-all transform active:scale-[0.98] flex items-center justify-center gap-3">
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
                         SIMPAN DATA UMKM
                     </button>
