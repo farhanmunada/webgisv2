@@ -209,10 +209,51 @@
             }
         });
 
+        function compressImage(file, maxWidth, maxHeight, quality, callback) {
+            const reader = new FileReader();
+            reader.readAsDataURL(file);
+            reader.onload = function (event) {
+                const img = new Image();
+                img.src = event.target.result;
+                img.onload = function () {
+                    const canvas = document.createElement('canvas');
+                    let width = img.width;
+                    let height = img.height;
+
+                    if (width > height) {
+                        if (width > maxWidth) {
+                            height = Math.round((height * maxWidth) / width);
+                            width = maxWidth;
+                        }
+                    } else {
+                        if (height > maxHeight) {
+                            width = Math.round((width * maxHeight) / height);
+                            height = maxHeight;
+                        }
+                    }
+
+                    canvas.width = width;
+                    canvas.height = height;
+
+                    const ctx = canvas.getContext('2d');
+                    ctx.drawImage(img, 0, 0, width, height);
+
+                    canvas.toBlob(function (blob) {
+                        const compressedFile = new File([blob], file.name.replace(/\.[^/.]+$/, "") + ".jpg", {
+                            type: 'image/jpeg',
+                            lastModified: Date.now()
+                        });
+                        callback(compressedFile);
+                    }, 'image/jpeg', quality);
+                };
+            };
+        }
+
         // Image Preview & Validation
         document.getElementById('foto-input').addEventListener('change', function(e) {
             const preview = document.getElementById('image-preview');
             const file = e.target.files[0];
+            const self = this;
             
             if (file) {
                 // 1. Validasi Tipe File
@@ -224,19 +265,37 @@
                     return;
                 }
 
-                // 2. Validasi Ukuran (5MB)
-                if (file.size > 5 * 1024 * 1024) {
-                    window.showToast('Ukuran file terlalu besar. Maksimal 5MB.', 'error');
-                    this.value = ''; // Reset input
-                    preview.innerHTML = `<svg class="w-10 h-10 text-slate-300 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg><p class="text-xs text-slate-400">Pilih Ulang Foto</p>`;
-                    return;
-                }
+                // Tampilkan indikator memproses
+                preview.innerHTML = `
+                    <div class="flex flex-col items-center justify-center">
+                        <svg class="animate-spin w-8 h-8 text-[#8B4513] mb-2" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"></path></svg>
+                        <p class="text-xs text-slate-500 font-bold">Mengompres foto...</p>
+                    </div>
+                `;
 
-                const reader = new FileReader();
-                reader.onload = function(event) {
-                    preview.innerHTML = `<img src="${event.target.result}" class="w-full h-full object-cover rounded-2xl">`;
-                }
-                reader.readAsDataURL(file);
+                // Nonaktifkan tombol submit selama kompresi
+                const submitBtn = document.querySelector('button[type="submit"]');
+                if (submitBtn) submitBtn.disabled = true;
+
+                // Jalankan kompresi client-side (maksimal lebar/tinggi 1000px, kualitas 0.7)
+                compressImage(file, 1000, 1000, 0.7, function(compressedFile) {
+                    // Masukkan file hasil kompresi ke input file
+                    const dataTransfer = new DataTransfer();
+                    dataTransfer.items.add(compressedFile);
+                    self.files = dataTransfer.files;
+
+                    // Buat preview dari file hasil kompresi
+                    const reader = new FileReader();
+                    reader.onload = function(event) {
+                        preview.innerHTML = `<img src="${event.target.result}" class="w-full h-full object-cover rounded-2xl">`;
+                    }
+                    reader.readAsDataURL(compressedFile);
+
+                    // Aktifkan kembali tombol submit
+                    if (submitBtn) submitBtn.disabled = false;
+                    
+                    window.showToast('Foto berhasil dioptimasi otomatis!', 'success');
+                });
             }
         });
     </script>
