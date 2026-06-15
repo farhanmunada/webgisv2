@@ -25,7 +25,9 @@ return new class extends Migration
             $table->enum('status', ['pending', 'approved', 'rejected'])->default('pending')->index();
             $table->timestamps();
             
-            $table->fullText(['nama_umkm', 'alamat']);
+            if (Schema::getConnection()->getDriverName() !== 'sqlite') {
+                $table->fullText(['nama_umkm', 'alamat']);
+            }
             // Standard indexes for lat/lng
             $table->index(['latitude', 'longitude']);
         });

@@ -6,10 +6,55 @@ use App\Models\User;
 use App\Models\Umkm;
 use App\Models\Category;
 use App\Models\Product;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
 class WebGISTest extends TestCase
 {
+    use RefreshDatabase;
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+        
+        // Seed default data (admin user, categories, etc.)
+        $this->seed();
+
+        // Seed specific users expected by tests
+        $umkmUser = User::firstOrCreate(
+            ['email' => 'testumkm@gmail.com'],
+            [
+                'name' => 'Test UMKM',
+                'password' => bcrypt('password'),
+                'role' => 'user'
+            ]
+        );
+
+        $category = Category::first();
+        Umkm::firstOrCreate(
+            ['user_id' => $umkmUser->id],
+            [
+                'nama_umkm' => 'Test UMKM Store',
+                'kategori_id' => $category ? $category->id : null,
+                'kecamatan' => 'Temanggung',
+                'latitude' => -7.310599,
+                'longitude' => 110.177368,
+                'alamat' => 'Jl. Test No 123',
+                'status' => 'approved',
+                'deskripsi' => 'Test Deskripsi UMKM'
+            ]
+        );
+
+        User::firstOrCreate(
+            ['email' => 'testuser@gmail.com'],
+            [
+                'name' => 'Test User',
+                'password' => bcrypt('password'),
+                'role' => 'user'
+            ]
+        );
+    }
+
     public function test_simple()
     {
         $this->assertTrue(true);
