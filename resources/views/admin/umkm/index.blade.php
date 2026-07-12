@@ -22,7 +22,6 @@
                         <th class="px-3 sm:px-6 py-3 sm:py-4 text-xs font-bold text-slate-400 uppercase tracking-wider">Informasi UMKM</th>
                         <th class="px-3 sm:px-6 py-3 sm:py-4 text-xs font-bold text-slate-400 uppercase tracking-wider">Kategori</th>
                         <th class="px-3 sm:px-6 py-3 sm:py-4 text-xs font-bold text-slate-400 uppercase tracking-wider">Kecamatan</th>
-                        <th class="px-3 sm:px-6 py-3 sm:py-4 text-xs font-bold text-slate-400 uppercase tracking-wider">Status</th>
                         <th class="px-3 sm:px-6 py-3 sm:py-4 text-xs font-bold text-slate-400 uppercase tracking-wider text-right">Aksi</th>
                     </tr>
                 </thead>
@@ -52,24 +51,6 @@
                             </span>
                         </td>
                         <td class="px-3 sm:px-6 py-3 sm:py-4 text-slate-600 text-xs sm:text-sm font-semibold">{{ $umkm->kecamatan }}</td>
-                        <td class="px-3 sm:px-6 py-3 sm:py-4">
-                            @if($umkm->status === 'approved')
-                                <span class="inline-flex items-center gap-1 sm:gap-1.5 text-emerald-600 text-[10px] sm:text-xs font-bold bg-emerald-50 px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-full border border-emerald-100">
-                                    <span class="w-1 sm:w-1.5 h-1 sm:h-1.5 rounded-full bg-emerald-500"></span>
-                                    Aktif
-                                </span>
-                            @elseif($umkm->status === 'pending')
-                                <span class="inline-flex items-center gap-1 sm:gap-1.5 text-amber-600 text-[10px] sm:text-xs font-bold bg-amber-50 px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-full border border-amber-100">
-                                    <span class="w-1 sm:w-1.5 h-1 sm:h-1.5 rounded-full bg-amber-500"></span>
-                                    Pending
-                                </span>
-                            @else
-                                <span class="inline-flex items-center gap-1 sm:gap-1.5 text-rose-600 text-[10px] sm:text-xs font-bold bg-rose-50 px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-full border border-rose-100">
-                                    <span class="w-1 sm:w-1.5 h-1 sm:h-1.5 rounded-full bg-rose-500"></span>
-                                    Ditolak
-                                </span>
-                            @endif
-                        </td>
                         <td class="px-3 sm:px-6 py-3 sm:py-4 text-right">
                             <div class="flex justify-end gap-1">
                                 <a href="{{ route('admin.umkm.edit', $umkm) }}" class="p-2 text-slate-400 hover:text-amber-600 hover:bg-amber-50 rounded-xl transition-all">
@@ -86,7 +67,7 @@
                     </tr>
                     @empty
                     <tr>
-                        <td colspan="5" class="px-6 py-20 text-center">
+                        <td colspan="4" class="px-6 py-20 text-center">
                             <div class="flex flex-col items-center">
                                 <div class="w-16 h-16 bg-slate-50 text-slate-200 rounded-full flex items-center justify-center mb-4">
                                     <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>

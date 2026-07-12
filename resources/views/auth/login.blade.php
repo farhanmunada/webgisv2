@@ -24,7 +24,7 @@
             <div class="flex items-center justify-between mb-2">
                 <label for="password" class="block text-sm font-semibold text-slate-700">Kata Sandi</label>
                 @if (Route::has('password.request'))
-                    <!-- <a href="{{ route('password.request') }}" class="text-xs font-semibold text-[#8B4513] hover:underline">Lupa sandi?</a> -->
+                    <a href="{{ route('password.request') }}" class="text-xs font-semibold text-[#8B4513] hover:underline">Lupa sandi?</a>
                 @endif
             </div>
             <div class="relative">
