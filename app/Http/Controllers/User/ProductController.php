@@ -5,6 +5,7 @@ namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
 use App\Models\Product;
 use App\Models\Umkm;
+use App\Notifications\ProductListedNotification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -46,7 +47,10 @@ class ProductController extends Controller
             $data['foto_produk'] = $request->file('foto_produk')->store('products', 'public');
         }
 
-        Product::create($data);
+        $product = Product::create($data);
+
+        // Kirim notifikasi email ke pemilik UMKM
+        $umkm->user->notify(new ProductListedNotification($product));
 
         return redirect()->route('dashboard')->with('success', 'Produk berhasil ditambahkan.');
     }
