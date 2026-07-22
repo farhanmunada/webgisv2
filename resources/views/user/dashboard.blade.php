@@ -136,5 +136,21 @@
                 Lihat di Peta
             </a>
         </div>
+
+        {{-- Zona Bahaya: Nonaktifkan UMKM --}}
+        <div class="mt-8 pt-8 border-t border-slate-100 max-w-md mx-auto">
+            <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-3">Zona Pengaturan</p>
+            <form action="{{ route('umkm.deactivate') }}" method="POST"
+                  onsubmit="return confirm('Nonaktifkan UMKM Anda?\n\nUMKM tidak akan tampil di peta dan katalog publik selama tidak aktif.\nAnda bisa mengaktifkan kembali kapan saja.')">
+                @csrf
+                <button type="submit"
+                    class="w-full px-6 py-3.5 bg-white text-slate-500 border border-slate-200 rounded-xl sm:rounded-2xl font-black text-[10px] uppercase tracking-widest hover:bg-red-50 hover:text-red-600 hover:border-red-200 transition-all flex items-center justify-center gap-2">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 9v6m4-6v6m7-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                    Nonaktifkan UMKM Saya
+                </button>
+            </form>
+        </div>
     </div>
 </x-umkm-layout>

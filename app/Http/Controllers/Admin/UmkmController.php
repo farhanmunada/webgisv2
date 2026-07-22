@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Umkm;
+use App\Notifications\UmkmSuspendedNotification;
+use App\Notifications\UmkmReactivatedNotification;
 use Illuminate\Http\Request;
 
 class UmkmController extends Controller
@@ -77,7 +79,6 @@ class UmkmController extends Controller
         $data = $request->except('foto');
 
         if ($request->hasFile('foto')) {
-            // Delete old photo if exists
             if ($umkm->foto) {
                 \Illuminate\Support\Facades\Storage::disk('public')->delete($umkm->foto);
             }
@@ -96,5 +97,33 @@ class UmkmController extends Controller
         }
         $umkm->delete();
         return redirect()->route('admin.umkm.index')->with('success', 'UMKM berhasil dihapus.');
+    }
+
+    /**
+     * Tangguhkan UMKM oleh admin — pemilik tidak bisa reaktivasi mandiri.
+     */
+    public function suspend(Umkm $umkm)
+    {
+        $umkm->update(['status' => 'suspended']);
+
+        if ($umkm->user) {
+            $umkm->user->notify(new UmkmSuspendedNotification($umkm));
+        }
+
+        return back()->with('success', "UMKM {$umkm->nama_umkm} berhasil ditangguhkan.");
+    }
+
+    /**
+     * Aktifkan kembali UMKM yang suspended atau inactive (oleh admin).
+     */
+    public function reactivate(Umkm $umkm)
+    {
+        $umkm->update(['status' => 'approved']);
+
+        if ($umkm->user) {
+            $umkm->user->notify(new UmkmReactivatedNotification($umkm));
+        }
+
+        return back()->with('success', "UMKM {$umkm->nama_umkm} berhasil diaktifkan kembali.");
     }
 }

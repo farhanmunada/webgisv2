@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\Product;
 use App\Models\Umkm;
 use App\Models\Category;
+use App\Notifications\UmkmDeactivatedSelfNotification;
+use App\Notifications\UmkmReactivatedNotification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -27,6 +29,16 @@ class UmkmDashboardController extends Controller
 
         if ($umkm->status === 'pending') {
             return view('user.dashboard-pending', compact('umkm'));
+        }
+
+        // Ditangguhkan admin — tidak bisa reaktivasi mandiri
+        if ($umkm->status === 'suspended') {
+            return view('user.dashboard-suspended', compact('umkm'));
+        }
+
+        // Dinonaktifkan mandiri — bisa aktifkan kembali sendiri
+        if ($umkm->status === 'inactive') {
+            return view('user.dashboard-inactive', compact('umkm'));
         }
 
         $stats = [
@@ -79,5 +91,44 @@ class UmkmDashboardController extends Controller
         $umkm->update($data);
 
         return back()->with('success', 'Profil UMKM berhasil diperbarui.');
+    }
+
+    /**
+     * Nonaktifkan UMKM secara mandiri oleh pemilik.
+     */
+    public function deactivate()
+    {
+        $umkm = Umkm::where('user_id', Auth::id())->firstOrFail();
+
+        // Hanya UMKM yang approved yang bisa dinonaktifkan
+        if ($umkm->status !== 'approved') {
+            return back()->with('error', 'UMKM tidak dapat dinonaktifkan pada status saat ini.');
+        }
+
+        $umkm->update(['status' => 'inactive']);
+
+        Auth::user()->notify(new UmkmDeactivatedSelfNotification($umkm));
+
+        return redirect()->route('dashboard')->with('success', 'UMKM Anda berhasil dinonaktifkan.');
+    }
+
+    /**
+     * Aktifkan kembali UMKM yang dinonaktifkan mandiri (hanya status inactive).
+     * UMKM yang suspended tidak bisa reaktivasi mandiri.
+     */
+    public function reactivate()
+    {
+        $umkm = Umkm::where('user_id', Auth::id())->firstOrFail();
+
+        // Hanya bisa reaktivasi jika status 'inactive' (bukan 'suspended')
+        if ($umkm->status !== 'inactive') {
+            abort(403, 'Anda tidak memiliki izin untuk mengaktifkan kembali UMKM ini.');
+        }
+
+        $umkm->update(['status' => 'approved']);
+
+        Auth::user()->notify(new UmkmReactivatedNotification($umkm));
+
+        return redirect()->route('dashboard')->with('success', 'UMKM Anda berhasil diaktifkan kembali!');
     }
 }

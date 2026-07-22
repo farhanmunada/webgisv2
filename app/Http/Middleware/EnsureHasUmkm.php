@@ -34,7 +34,9 @@ class EnsureHasUmkm
         }
 
         if ($umkm->status !== 'approved') {
-            return redirect()->route('dashboard')->with('warning', 'Dashboard UMKM Anda sedang menunggu persetujuan admin.');
+            // Status pending, inactive, suspended → arahkan ke dashboard
+            // Dashboard akan menampilkan view yang sesuai per status
+            return redirect()->route('dashboard');
         }
 
         return $next($request);

@@ -22,6 +22,7 @@
                         <th class="px-3 sm:px-6 py-3 sm:py-4 text-xs font-bold text-slate-400 uppercase tracking-wider">Informasi UMKM</th>
                         <th class="px-3 sm:px-6 py-3 sm:py-4 text-xs font-bold text-slate-400 uppercase tracking-wider">Kategori</th>
                         <th class="px-3 sm:px-6 py-3 sm:py-4 text-xs font-bold text-slate-400 uppercase tracking-wider">Kecamatan</th>
+                        <th class="px-3 sm:px-6 py-3 sm:py-4 text-xs font-bold text-slate-400 uppercase tracking-wider">Status</th>
                         <th class="px-3 sm:px-6 py-3 sm:py-4 text-xs font-bold text-slate-400 uppercase tracking-wider text-right">Aksi</th>
                     </tr>
                 </thead>
@@ -51,11 +52,46 @@
                             </span>
                         </td>
                         <td class="px-3 sm:px-6 py-3 sm:py-4 text-slate-600 text-xs sm:text-sm font-semibold">{{ $umkm->kecamatan }}</td>
+                        {{-- Kolom Status --}}
+                        <td class="px-3 sm:px-6 py-3 sm:py-4">
+                            @if($umkm->status === 'approved')
+                                <span class="px-2 py-0.5 sm:px-3 sm:py-1 bg-green-50 text-green-700 text-[9px] sm:text-[10px] font-black uppercase tracking-wider rounded-lg border border-green-100">Aktif</span>
+                            @elseif($umkm->status === 'pending')
+                                <span class="px-2 py-0.5 sm:px-3 sm:py-1 bg-amber-50 text-amber-700 text-[9px] sm:text-[10px] font-black uppercase tracking-wider rounded-lg border border-amber-100">Pending</span>
+                            @elseif($umkm->status === 'inactive')
+                                <span class="px-2 py-0.5 sm:px-3 sm:py-1 bg-slate-100 text-slate-500 text-[9px] sm:text-[10px] font-black uppercase tracking-wider rounded-lg border border-slate-200">Tidak Aktif</span>
+                            @elseif($umkm->status === 'suspended')
+                                <span class="px-2 py-0.5 sm:px-3 sm:py-1 bg-red-50 text-red-700 text-[9px] sm:text-[10px] font-black uppercase tracking-wider rounded-lg border border-red-100">Ditangguhkan</span>
+                            @endif
+                        </td>
                         <td class="px-3 sm:px-6 py-3 sm:py-4 text-right">
                             <div class="flex justify-end gap-1">
                                 <a href="{{ route('admin.umkm.edit', $umkm) }}" class="p-2 text-slate-400 hover:text-amber-600 hover:bg-amber-50 rounded-xl transition-all">
                                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path></svg>
                                 </a>
+
+                                {{-- Tombol Tangguhkan (hanya untuk approved/inactive) --}}
+                                @if(in_array($umkm->status, ['approved', 'inactive']))
+                                <form action="{{ route('admin.umkm.suspend', $umkm) }}" method="POST"
+                                      onsubmit="return confirm('Tangguhkan UMKM {{ $umkm->nama_umkm }}? Pemilik akan mendapat notifikasi email.')">
+                                    @csrf
+                                    <button type="submit" title="Tangguhkan" class="p-2 text-slate-400 hover:text-orange-600 hover:bg-orange-50 rounded-xl transition-all">
+                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636"/></svg>
+                                    </button>
+                                </form>
+                                @endif
+
+                                {{-- Tombol Aktifkan Kembali (untuk suspended/inactive) --}}
+                                @if(in_array($umkm->status, ['suspended', 'inactive']))
+                                <form action="{{ route('admin.umkm.reactivate', $umkm) }}" method="POST"
+                                      onsubmit="return confirm('Aktifkan kembali UMKM {{ $umkm->nama_umkm }}?')">
+                                    @csrf
+                                    <button type="submit" title="Aktifkan Kembali" class="p-2 text-slate-400 hover:text-green-600 hover:bg-green-50 rounded-xl transition-all">
+                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                                    </button>
+                                </form>
+                                @endif
+
                                 <form action="{{ route('admin.umkm.destroy', $umkm) }}" method="POST" onsubmit="return confirm('Hapus UMKM ini?')">
                                     @csrf @method('DELETE')
                                     <button class="p-2 text-slate-400 hover:text-rose-600 hover:bg-rose-50 rounded-xl transition-all">

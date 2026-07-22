@@ -35,6 +35,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
             'destroy' => 'umkm.products.destroy',
         ]);
     });
+
+    // UMKM self-deactivate/reactivate (tidak butuh middleware 'umkm' karena akses dari halaman non-approved)
+    Route::post('/umkm/deactivate', [\App\Http\Controllers\User\UmkmDashboardController::class, 'deactivate'])->name('umkm.deactivate');
+    Route::post('/umkm/reactivate', [\App\Http\Controllers\User\UmkmDashboardController::class, 'reactivate'])->name('umkm.reactivate');
 });
 
 Route::get('/katalog', [\App\Http\Controllers\PublicController::class, 'katalog'])->name('katalog');
@@ -68,4 +72,7 @@ Route::middleware(['auth', 'verified', 'role:admin'])->prefix('admin')->name('ad
     Route::get('umkm-approval', [\App\Http\Controllers\Admin\UmkmApprovalController::class, 'index'])->name('umkm.approval.index');
     Route::post('umkm-approval/{umkm}/approve', [\App\Http\Controllers\Admin\UmkmApprovalController::class, 'approve'])->name('umkm.approval.approve');
     Route::post('umkm-approval/{umkm}/reject', [\App\Http\Controllers\Admin\UmkmApprovalController::class, 'reject'])->name('umkm.approval.reject');
+    // Admin suspend & reactivate UMKM
+    Route::post('umkm/{umkm}/suspend', [\App\Http\Controllers\Admin\UmkmController::class, 'suspend'])->name('umkm.suspend');
+    Route::post('umkm/{umkm}/reactivate', [\App\Http\Controllers\Admin\UmkmController::class, 'reactivate'])->name('umkm.reactivate');
 });
