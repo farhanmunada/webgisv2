@@ -9,10 +9,10 @@ export const CONFIG = {
         ],
     },
     COLORS: {
-        COFFEE_SHOP: '#fcd34d',
-        ROASTERY: '#b45309',
+        COFFEE_SHOP: '#c47c00',
+        ROASTERY: '#78350f',
         SUPPLIER: '#14532d',
-        DEFAULT: '#d97706',
+        DEFAULT: '#92400e',
         ROUTE: '#8B4513',
         POLYGON_FILL: '#8B4513',
         POLYGON_STROKE: '#703610'

@@ -25,22 +25,33 @@ export const MarkerManager = {
             if (isNaN(lat) || isNaN(lng)) return;
 
             const catName = umkm.category ? umkm.category.nama_kategori : 'Unknown';
+            const namaUmkm = umkm.nama_umkm || '';
+
             const marker = new google.maps.Marker({
                 position: { lat, lng },
                 map: State.map,
-                title: umkm.nama_umkm,
+                title: namaUmkm,
                 icon: {
                     url: this.createIcon(catName),
                     scaledSize: new google.maps.Size(36, 36),
-                    anchor: new google.maps.Point(18, 36)
+                    anchor: new google.maps.Point(18, 36),
+                    labelOrigin: new google.maps.Point(18, 48)
+                },
+                label: {
+                    text: namaUmkm,
+                    color: '#1e293b',
+                    fontSize: '10px',
+                    fontWeight: '700',
+                    fontFamily: 'Inter, sans-serif',
+                    className: 'marker-label'
                 }
             });
 
             marker.addListener("click", () => onMarkerClick(umkm, marker));
-            State.markers.push({ 
-                marker, 
+            State.markers.push({
+                marker,
                 category: catName,
-                name: umkm.nama_umkm ? umkm.nama_umkm.toLowerCase().trim() : ''
+                name: namaUmkm.toLowerCase().trim()
             });
         });
     },
@@ -49,7 +60,7 @@ export const MarkerManager = {
         if (!State.isMarkersVisible) {
             State.markers.forEach(m => m.marker.setVisible(false));
             return;
-        }
+        };
 
         const searchVal = document.getElementById('search-input')?.value.toLowerCase().trim() || '';
         const activeChip = document.querySelector('.chip.active');
